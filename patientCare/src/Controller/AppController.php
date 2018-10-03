@@ -66,4 +66,26 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
     }
+
+    public function beforeRender(Event $event)
+    {
+        // if (!array_key_exsists('_serialize', $this-viewVars) &&
+        //     in_array($this->response->type(), ['application/json'])
+        // ) {
+        //     $this->set('_serialize', true);
+        // }
+
+        // check login
+        if($this->request->session()->read('Auth.User')){
+            $this->set('loggedIn', true);
+        } else {
+            $this->set('loggedIn', false);
+        }
+    }
+
+    function console_log( $data ){
+      echo '<script>';
+      echo 'console.log('. json_encode( $data ) .')';
+      echo '</script>';
+    }
 }

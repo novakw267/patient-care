@@ -113,8 +113,16 @@ class UsersController extends AppController
 
                 $this->redirect($this->Auth->redirecturl());
             }
-            // Bad Login
+            else{
+                // Bad Login
             $this->Flash->error('Incorrect Login');
+            }
         }
+    }
+
+    // Logout Users
+    public function logout(){
+        $this->Flash->success('You are logged out');
+        $this->redirect($this->Auth->logout());
     }
 }
